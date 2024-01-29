@@ -1,7 +1,7 @@
+import 'package:app_awesome_notifications/main.dart';
 import 'package:app_awesome_notifications/screens/second_screen.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:app_awesome_notifications/main.dart';
 
 class NotificationService {
   static Future<void> initializeNotification() async {
@@ -9,6 +9,7 @@ class NotificationService {
       null,
       [
         NotificationChannel(
+          channelGroupKey: 'high_importance_channel',
           channelKey: 'high_importance_channel',
           channelName: 'high_importance_channel',
           channelDescription: 'Notification channel for basic tests',
@@ -75,18 +76,19 @@ class NotificationService {
     }
   }
 
-  static Future<void> showNotification(
-      {required final String title,
-      required final String body,
-      final String? summary,
-      final Map<String, String>? payload,
-      final ActionType actionType = ActionType.Default,
-      final NotificationLayout notificationLayout = NotificationLayout.Default,
-      final NotificationCategory? category,
-      final String? bigPicture,
-      final List<NotificationActionButton>? actionButton,
-      final bool scheduled = false,
-      final int? interval}) async {
+  static Future<void> showNotification({
+    required final String title,
+    required final String body,
+    final String? summary,
+    final Map<String, String>? payload,
+    final ActionType actionType = ActionType.Default,
+    final NotificationLayout notificationLayout = NotificationLayout.Default,
+    final NotificationCategory? category,
+    final String? bigPicture,
+    final List<NotificationActionButton>? actionButtons,
+    final bool scheduled = false,
+    final int? interval,
+  }) async {
     assert(!scheduled || (scheduled && interval != null));
 
     await AwesomeNotifications().createNotification(
@@ -102,7 +104,7 @@ class NotificationService {
           payload: payload,
           bigPicture: bigPicture,
         ),
-        actionButtons: actionButton,
+        actionButtons: actionButtons,
         schedule: scheduled
             ? NotificationInterval(
                 interval: interval,

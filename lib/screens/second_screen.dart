@@ -1,3 +1,4 @@
+import 'package:app_awesome_notifications/main.dart';
 import 'package:app_awesome_notifications/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -19,14 +20,18 @@ class SecondScreen extends StatelessWidget {
         ),
         child: SizedBox(
           width: MediaQuery.of(context).size.height,
-          child: const Column(
+          child: Column(
             children: [
-              TopBar(title: 'Segunda Tela'),
-              Spacer(),
-              Center(
-                child: Text("navegou a partir da notificação"),
+              const TopBar(title: 'Segunda Tela'),
+              const Spacer(),
+              const Center(
+                child: Text("Navegou a partir da notificação"),
               ),
-              Spacer(),
+              IconButton(
+                onPressed: () => MainApp.navigatorKey.currentState?.pop(),
+                icon: const Icon(Icons.arrow_circle_left_outlined),
+              ),
+              const Spacer(),
             ],
           ),
         ),

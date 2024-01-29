@@ -85,8 +85,7 @@ class HomeScreen extends StatelessWidget {
                   title: 'Título da notificação',
                   body: 'Corpo da notificação',
                   payload: {'navigate': 'true'},
-                  summary: 'Pequeno resumo',
-                  actionButton: [
+                  actionButtons: [
                     NotificationActionButton(
                       key: 'check',
                       label: 'Confira',
